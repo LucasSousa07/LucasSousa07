@@ -1,0 +1,140 @@
+
+.section__btn {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 130px;
+    background-color: rgb(132, 132, 142);
+    color: #333333;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 3px;
+    flex-basis: 20%;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.btn:hover {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+
+.btn-blue {
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    width: 130px;
+    background-color: rgb(111, 111, 224);
+    color: #333333;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 3px;
+    flex-basis: 20%;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.btn-blue:hover {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.9;
+
+
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
+.btnalterar {
+    border: none;
+    width: 150px;
+    padding: 15px 0px;
+    background-color: rgb(1, 165, 42);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 10px;
+    transition: 0.4s;
+}
+
+.btnalterar:hover {
+    opacity: 0.9;
+    color: #333333;
+}
+
+.btnexcluir {
+
+    border: none;
+    width: 150px;
+    padding: 15px 0px;
+    background-color: rgb(182, 51, 46);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 10px;
+    transition: 0.4s;
+}
+
+.btnexcluir:hover {
+    opacity: 0.9;
+    color: #333333;
+
+}
+
+
+.update-confirmation-success {
+
+    width: 100%;
+    background: #198754;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgb(0, 0, 0);
+    margin: 50px auto;
+
+}
+
+.update-confirmation-header {
+
+    margin: 50px auto;
+}
+
+.update-confirmation-header > h2 {
+
+    color: #333333;
+    padding: 30px;
+    text-align: center;
+    font-size: 1.6rem;
+
+}
+
+.update-confirmation-error {
+
+    width: 100%;
+    background: #955251;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgb(0, 0, 0);
+    margin: 50px auto;
+
+}
