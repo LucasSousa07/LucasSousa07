@@ -30,7 +30,9 @@
     <nav class="main-header-content">
 
         <div class="logo">
-            <a href="../index.php">TechJobs</a>
+            <a href="../view/index.php">
+                <img src="../assets/img/Tech%20(1).svg" alt="" width="200px" height="100px">
+            </a>
         </div>
 
         <nav class="menu">
@@ -57,6 +59,14 @@
     </nav>
 </header>
 
+<?php if (isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso') { ?>
+    <div class="update-confirmation-success" style="width: 38%">
+        <div class="update-confirmation-header">
+            <h2>Você foi cadastrado, faça o login para ter o acesso!</h2>
+        </div>
+    </div>
+<?php } ?>
+
 
 <main class="main-blog">
     <div class="card-login">
@@ -65,23 +75,44 @@
             <div class="container">
                 <div class="row text">
                     <div class="col-md-12">
-                        <div class="card-login-content"
+                        <div class="card-login-content">
                         <div class="card-body font-weight-bold card-login-content-text">
 
                             <div class="form-group card-login-content-input">
                                 <label for="email">E-mail</label>
                                 <input name="email" type="text" class="form-control" id="email"
-                                       placeholder="***@email.com">
+                                       required placeholder="***@email.com">
 
                                 <label for="senha">Senha</label>
                                 <input name="senha" type="password" class="form-control" id="senha"
-                                       placeholder="********">
+                                      required placeholder="********">
                                 <?php
                                 if (isset($_GET['auth']) && $_GET['auth'] == 'erro') { ?>
-                                    <div style="color: darkred; font-size: 1.2rem"> Login
+                                    <div style="color: darkred; font-size: 1.2rem"> Email ou senha
                                         inválido.
                                     </div>
                                 <?php } ?>
+                                <?php
+                                if (isset($_GET['auth']) && $_GET['auth'] == 'erro2') { ?>
+                                    <div style="color: darkred; font-size: 1.2rem"> Faça o login para poder ter acesso às vagas
+                                    </div>
+                                <?php } ?>
+                                <?php
+                                if (isset($_GET['candidato']) && $_GET['candidato'] == 'sucesso') { ?>
+                                    <div style="color: darkseagreen; font-size: 1.2rem"> Candidato cadastrado com sucesso!
+                                    </div>
+                                <?php } ?>
+                                <?php
+                                if (isset($_GET['empresa']) && $_GET['empresa'] == 'sucesso') { ?>
+                                    <div style="color: darkseagreen; font-size: 1.2rem"> Empresa cadastrada com sucesso!
+                                    </div>
+                                <?php } ?>
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -96,13 +127,7 @@
 
 
 </main>
-<?php if (isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso') { ?>
-    <div class="update-confirmation-success" style="width: 38%">
-        <div class="update-confirmation-header">
-            <h2>Você foi cadastrado, faça o login para ter o acesso!</h2>
-        </div>
-    </div>
-<?php } ?>
+
 
 </body>
 
