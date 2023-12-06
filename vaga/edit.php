@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../src/dao/usuariodao.php';
 require_once __DIR__ . "/../src/dao/vagadao.php";
+header('Content-Type: text/html; charset=utf-8');
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?? 0;
 $dao = new VagaDAO();
@@ -12,6 +13,11 @@ if (!$vaga) {
     header('location: index.php?error=Vaga não encontrada!');
     exit;
 }
+
+$usuario_id = $vaga['usuario_id'];
+$dao = new UsuarioDAO();
+$usuario = $dao->getById($usuario_id);
+
 ?>
 
 <head>
@@ -32,11 +38,15 @@ if (!$vaga) {
 
     <title>Tech Jobs - Vaga</title>
 </head>
+
 <header class="main-header">
+
     <nav class="main-header-content">
 
         <div class="logo">
-            <a href="../auth/home.php">TechJobs</a>
+            <a href="../view/home.php">
+                <img src="../assets/img/Tech%20(1).svg" alt="" width="200px" height="100px">
+            </a>
         </div>
 
 
@@ -45,24 +55,24 @@ if (!$vaga) {
 
             <ul>
                 <li class="item-menu">
-                    <a href="../auth/home.php">
+                    <a href="../view/home.php">
                         <span class="icon"><i class="bi bi-house-door"></i></span>
                         <span class="txt-link">Home</span>
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="../view/blog.php">
                         <span class="icon"><i class="bi bi-columns"></i></span>
-                        <span class="txt-link">Dashboard</span>
+                        <span class="txt-link">Blog</span>
                     </a>
                 </li>
 
                 <!--Colocar condição de acesso à configuração.
-                 Se for um candidato, ele pode alterar dados sendo um perfil candidato.
-                 Se for um empresa, ele pode alterar dados sendo um perfil empresa. -->
+Se for um candidato, ele pode alterar dados sendo um perfil candidato.
+Se for um empresa, ele pode alterar dados sendo um perfil empresa. -->
 
                 <li class="item-menu">
-                    <a href="index.php ">
+                    <a href="../usuarios/administrador/index.php ">
                         <span class="icon"><i class="bi bi-person"></i></span>
                         <span class="txt-link">Perfil</span>
                     </a>
@@ -77,22 +87,11 @@ if (!$vaga) {
         </nav>
     </nav>
 </header>
-
 <body>
 <main class="main-vaga">
 
-    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'erro') { ?>
-
-        <div class="update-confirmation-error">
-            <div class="update-confirmation-header">
-                <h2>Erro ao alterar dados!</h2>
-            </div>
-
-        </div>
-    <?php } ?>
-
     <div class="card-vaga">
-        <h2>Alterar vaga</h2>
+        <h2>Alterar vaga do usuário <?= $usuario['nome'] ?></h2>
 
         <form action="update.php" method="post">
             <div class="container">
@@ -111,15 +110,18 @@ if (!$vaga) {
 
                                 <div>
                                     <label for="tipo">Tipo: </label>
-                                    <input type="text" name="tipo"
-                                           placeholder="Informe o tipo de contrato" required
-                                           value="<?= htmlspecialchars($vaga['tipo']) ?>">
+                                    <select name="tipo">
+                                        <option value="<?= $vaga['tipo'] ?>"></option>
+                                        <option value="Efetivo/CLT">Efetivo/CLT</option>
+                                        <option value="Estágio">Estágio</option>
+                                        <option value="Trainee">Trainee</option>
+                                    </select placeholder="Informe o tipo de contrato" required value="<?= htmlspecialchars($vaga['tipo']) ?>">
                                 </div>
                                 <div style="font-size: 1.5rem;">
                                     <label for="descricao">Descrição: </label>
                                     <textarea id="descricao" name="descricao" rows="16" cols="100"
                                               required
-                                              placeholder="<?= htmlspecialchars($vaga['descricao']) ?>"></textarea>
+                                    ><?= $vaga['descricao'] ?></textarea>
                                 </div>
                                 <div>
                                     <label for="salario">Salário: </label>
